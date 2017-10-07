@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:background="@drawable/launch_bg"
+                tools:context=".SplashActivity"
+                xmlns:android="http://schemas.android.com/apk/res/android">
+    <ProgressBar
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pb_splash_loading"
+        style="?android:attr/progressBarStyle"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="207dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_splash_version"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/pb_splash_loading"
+        android:text="version:1.0"/>
+</RelativeLayout>
