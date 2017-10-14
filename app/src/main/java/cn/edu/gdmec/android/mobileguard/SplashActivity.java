@@ -23,6 +23,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run(){
                 super.run();
                 versionUpdateUtils.getCloudVersion();
+                //。。。
             }
         }.start();
 
