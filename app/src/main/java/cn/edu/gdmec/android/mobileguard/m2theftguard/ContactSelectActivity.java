@@ -40,32 +40,36 @@ public class ContactSelectActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_contact_select);
         initView();
     }
-    private void initView(){
+    private void initView() {
         ((TextView) findViewById(R.id.tv_title)).setText("选择联系人");
         ImageView mLeftImgv = (ImageView) findViewById(R.id.imgv_leftbtn);
         mLeftImgv.setOnClickListener(this);
         mLeftImgv.setImageResource(R.drawable.back);
         findViewById(R.id.rl_titlebar).setBackgroundColor(getResources().getColor(R.color.purple));
         mListView = (ListView) findViewById(R.id.lv_contact);
-        new Thread(){
-            public void run(){
+        new Thread() {
+            public void run() {
                 systemContacts = ContactInfoParser.getSystemContact(ContactSelectActivity.this);
                 systemContacts.addAll(ContactInfoParser.getSimContacts(ContactSelectActivity.this));
                 mHandler.sendEmptyMessage(10);
-            };
+            }
+
+            ;
         }.start();
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int i, long id){
-                ContactInfo item = (ContactInfo) adapter.getItem(i);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ContactInfo item = (ContactInfo) adapter.getItem(position);
                 Intent intent = new Intent();
                 intent.putExtra("phone", item.phone);
                 setResult(0, intent);
                 finish();
             }
+
         });
     }
-    @Override
+
+            @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.imgv_leftbtn:
