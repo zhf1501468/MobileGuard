@@ -51,9 +51,11 @@ public class Setup4Activity extends BaseSetUpActivity{
         editor.putBoolean("isSetup",true);
         editor.commit();
         startActivityAndFinishSelf(LostFindActivity.class);
+        overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
     }
     @Override
     public void showPre(){
         startActivityAndFinishSelf(Setup3Activity.class);
+        overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
     }
 }

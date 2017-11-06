@@ -44,10 +44,13 @@ public class Setup2Activity extends BaseSetUpActivity implements View.OnClickLis
             return;
         }
         startActivityAndFinishSelf(Setup3Activity.class);
+        overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
     }
     @Override
     public void showPre(){
         startActivityAndFinishSelf(Setup1Activity.class);
+        overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
+
     }
     @Override
     public void onClick(View view){

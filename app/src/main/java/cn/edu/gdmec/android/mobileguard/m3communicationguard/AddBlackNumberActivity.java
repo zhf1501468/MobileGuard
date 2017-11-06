@@ -98,7 +98,7 @@ public class AddBlackNumberActivity extends AppCompatActivity implements View.On
                 break;
             case R.id.add_fromcontact_btn:
                 startActivityForResult(new Intent(this, ContactSelectActivity.class), 0);
-                overridePendingTransition(R.anim.next_in,   R.anim.abc_fade_out);
+                overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
                 break;
         }
     }

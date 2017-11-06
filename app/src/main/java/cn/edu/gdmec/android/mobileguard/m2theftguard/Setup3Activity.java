@@ -39,6 +39,7 @@ public class Setup3Activity extends BaseSetUpActivity implements View.OnClickLis
         edit.putString("safephone", safePhone);
         edit.commit();
         startActivityAndFinishSelf(Setup4Activity.class);
+        overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
     }
 
     @Override
@@ -51,6 +52,7 @@ public class Setup3Activity extends BaseSetUpActivity implements View.OnClickLis
         switch (v.getId()){
             case R.id.btn_addcontact:
                 startActivityForResult(new Intent(this, ContactSelectActivity.class), 0);
+                overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
                 break;
         }
     }
