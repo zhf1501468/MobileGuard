@@ -42,7 +42,6 @@ public class BlackNumberDao {
         }
     }
 
-//    删除数据
 
     public boolean delete(BlackContactInfo blackContactInfo){
         SQLiteDatabase db = blackNumberOpenHelper.getWritableDatabase();

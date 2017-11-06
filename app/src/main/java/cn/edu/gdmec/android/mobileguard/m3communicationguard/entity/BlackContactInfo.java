@@ -5,11 +5,8 @@ package cn.edu.gdmec.android.mobileguard.m3communicationguard.entity;
  */
 
 public class BlackContactInfo {
-//    黑名单号码
     public String phoneNumber;
-//    黑名单联系人名称
     public String contactName;
-//    黑名单拦截模式
     public int mode;
     public String getModeString(int mode){
         switch (mode){

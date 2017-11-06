@@ -78,10 +78,8 @@ public class AddBlackNumberActivity extends AppCompatActivity implements View.On
                     blackContactInfo.phoneNumber = number;
                     blackContactInfo.contactName = name;
                     if (mSmsCB.isChecked() & mTelCB.isChecked()){
-                        //电话短信一起拦截
                         blackContactInfo.mode = 3;
                     }else if (mSmsCB.isChecked() & !mTelCB.isChecked()){
-                        //短信拦截
                         blackContactInfo.mode = 2;
                     }else if (!mSmsCB.isChecked() & mTelCB.isChecked()){
                         blackContactInfo.mode = 1;
@@ -100,6 +98,7 @@ public class AddBlackNumberActivity extends AppCompatActivity implements View.On
                 break;
             case R.id.add_fromcontact_btn:
                 startActivityForResult(new Intent(this, ContactSelectActivity.class), 0);
+                overridePendingTransition(R.anim.next_in,   R.anim.abc_fade_out);
                 break;
         }
     }

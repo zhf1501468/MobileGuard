@@ -20,9 +20,7 @@ import cn.edu.gdmec.android.mobileguard.m3communicationguard.db.dao.BlackNumberD
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.entity.BlackContactInfo;
 
 public class SecurityPhoneActivity extends AppCompatActivity implements View.OnClickListener {
-    //有黑名单时，显示的帧布局
     private FrameLayout mHaveBlackNumber;
-    //反之
     private FrameLayout mNoBlcakNumber;
     private BlackNumberDao dao;
     private ListView mListView;
@@ -114,6 +112,7 @@ public class SecurityPhoneActivity extends AppCompatActivity implements View.OnC
                 break;
             case R.id.btn_addblacknumber:
                 startActivity(new Intent(this, AddBlackNumberActivity.class));
+                overridePendingTransition(R.anim.next_out,   R.anim.abc_fade_out);
                 break;
         }
     }

@@ -20,7 +20,7 @@ public class InterceptSmsReciever extends BroadcastReceiver {
         SharedPreferences mSP = context.getSharedPreferences("config",Context.MODE_PRIVATE);
         boolean BlackNumStatus = mSP.getBoolean("BlackNumStatus", true);
         if (!BlackNumStatus){
-//            黑名单拦截关闭
+
             return;
         }
         BlackNumberDao dao = new BlackNumberDao(context);
