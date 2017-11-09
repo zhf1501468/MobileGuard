@@ -58,7 +58,7 @@ public class EngineUtils  {
            Toast.makeText(context,"系统应用无法卸载",Toast.LENGTH_LONG).show();
        }
    }
-    public static void AboutAppData(Context context,AppInfo appInfo){
+    public static void AboutApp(Context context,AppInfo appInfo){
         try {
             PackageManager pm = context.getPackageManager ();
             PackageInfo packInfo = pm.getPackageInfo ( appInfo.packageName, 0 );
@@ -109,4 +109,4 @@ public class EngineUtils  {
         }
     }
 }
-//新增2
+//新增233
