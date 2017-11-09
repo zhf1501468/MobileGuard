@@ -5,9 +5,19 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.net.Uri;
 import android.widget.Toast;
+
+import java.io.ByteArrayInputStream;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
 
 import cn.edu.gdmec.android.mobileguard.m4appmanager.entity.AppInfo;
 
@@ -49,24 +59,54 @@ public class EngineUtils  {
        }
    }
     public static void AboutAppData(Context context,AppInfo appInfo){
-        AlertDialog.Builder builder =new AlertDialog.Builder(context);
-        builder.setTitle(appInfo.appName);
-        builder.setMessage(
+        try {
+            PackageManager pm = context.getPackageManager ();
+            PackageInfo packInfo = pm.getPackageInfo ( appInfo.packageName, 0 );
+            String version = packInfo.versionName;
 
-                "Version:"+"\n"+appInfo.appVersion+"\n\n"+
+            long firstInstallTime = packInfo.firstInstallTime;
 
-                        "Install time:"+"\n"+appInfo.inStalldate+"\n\n"+
+            PackageInfo packinfo1 = pm.getPackageInfo ( appInfo.packageName, PackageManager.GET_SIGNATURES );
+            String certMsg = "";
+            Signature[] sigs = packinfo1.signatures;
+            CertificateFactory certFactory = CertificateFactory.getInstance ( "X.509" );
 
-                        "Certificate issuer:"+"\n"+appInfo.certMsg+"\n\n"+
+            X509Certificate cert = (X509Certificate) certFactory.generateCertificate ( new ByteArrayInputStream( sigs[0].toByteArray () ) );
 
-                        "Permission:"+"\n"+appInfo.Permissions);
-        builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
+            certMsg+= cert.getIssuerDN ().toString ();
+            certMsg+= cert.getSubjectDN ().toString ();
+            String date=null;
+            SimpleDateFormat dateformat = new SimpleDateFormat("yyyy年MM月dd号 hh:mm:ss");
+            date=dateformat.format(firstInstallTime);
+
+            List<String> a=new ArrayList<String>(  );
+            PackageInfo packinfo2 = pm.getPackageInfo ( appInfo.packageName, PackageManager.GET_PERMISSIONS );
+            String[] permissions = packinfo2.requestedPermissions;
+
+            if (permissions != null){
+                for (String str : permissions){
+                    a.add ( str );
+                }
             }
-        });
-        builder.show();
+            String s = Pattern.compile("\\b([\\w\\W])\\b").matcher(a.toString().substring(1,a.toString().length()-1)).replaceAll(".");
+
+            AlertDialog.Builder builder =new AlertDialog.Builder(context);
+            builder.setTitle(appInfo.appName);
+            builder.setMessage("version:"+version+"\n"+
+                    "Install time:"+"\n"+firstInstallTime+"\n"+
+                    "Install time:"+"\n"+date+"\n"+
+                    "Certificate issuer:"+certMsg+"\n"+
+                    "Permission:"+"\n"+s);
+            builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+            builder.show();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 //新增
