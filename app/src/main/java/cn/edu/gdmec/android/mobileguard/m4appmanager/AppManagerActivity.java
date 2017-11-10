@@ -173,7 +173,7 @@ public class AppManagerActivity extends AppCompatActivity implements  View.OnCli
                 if (i >= userAppInfos.size() + 1) {
                     mAppNumTV.setText("系统程序：" + systemAppInfos.size() + "个");
                 } else {
-                    mAppNumTV.setText("用户程序；" + userAppInfos.size() + "个");
+                    mAppNumTV.setText("用户程序：" + userAppInfos.size() + "个");
                 }
             }
         });
