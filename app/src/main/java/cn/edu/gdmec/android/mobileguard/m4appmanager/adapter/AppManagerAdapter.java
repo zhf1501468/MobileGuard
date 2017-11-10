@@ -157,8 +157,8 @@ public class AppManagerAdapter extends BaseAdapter {
         public void onClick(View v){
             switch (v.getId()){
                 case R.id.tv_launch_app:
-                EngineUtils.startApplication(context,appInfo);
-                break;
+                    EngineUtils.startApplication(context,appInfo);
+                    break;
                 case R.id.tv_setting_app:
                     EngineUtils.SettingAppDetail(context,appInfo);
                     break;
@@ -173,7 +173,7 @@ public class AppManagerAdapter extends BaseAdapter {
                     EngineUtils.uninstallApplication(context,appInfo);
                     break;
                 case R.id.tv_about_app:
-                    EngineUtils.AboutApp(context,appInfo);
+                    EngineUtils.AboutAppData(context,appInfo);
                     break;
             }
         }
