@@ -47,9 +47,11 @@ public class SecurityPhoneActivity extends AppCompatActivity implements View.OnC
             pageBlackNumber.addAll(dao.getPageBlackNumber(pagenumber, pagesize));
             if (adapter == null){
                 adapter = new BlackContactAdapter(pageBlackNumber, SecurityPhoneActivity.this);
-                adapter.setCallBack(new BlackContactAdapter.BlackContactCallBack(){
+                adapter.setCallBack(new BlackContactAdapter.BlackConactCallBack(){
+
+
                     @Override
-                    public void DataSizeChanged(){
+                    public void DataSizeChanged() {
                         fillData();
                     }
                 });
@@ -59,7 +61,7 @@ public class SecurityPhoneActivity extends AppCompatActivity implements View.OnC
             }
         }
     }
-
+//
     private void initView(){
         findViewById(R.id.rl_titlebar).setBackgroundColor(getResources().getColor(R.color.bright_purple));
         ImageView mLeftImgv = (ImageView) findViewById(R.id.imgv_leftbtn);

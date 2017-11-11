@@ -1,13 +1,14 @@
 package cn.edu.gdmec.android.mobileguard.m3communicationguard.entity;
 
 /**
- * Created by DONG on 2017/10/31.
+ * Created by Swindler on 2017/10/30.
  */
 
 public class BlackContactInfo {
     public String phoneNumber;
     public String contactName;
     public int mode;
+    public String type;
     public String getModeString(int mode){
         switch (mode){
             case 1:
@@ -17,6 +18,8 @@ public class BlackContactInfo {
             case 3:
                 return "电话、短信拦截";
         }
-        return "";
+        return  "";
     }
+
+
 }
