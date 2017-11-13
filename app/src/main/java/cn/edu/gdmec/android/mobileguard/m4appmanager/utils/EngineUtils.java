@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 
@@ -12,11 +13,7 @@ import android.widget.Toast;
 
 import cn.edu.gdmec.android.mobileguard.m4appmanager.entity.AppInfo;
 
-/**
- * Created by DONG on 2017/11/5.
- */
 
-//      分享应用
 
 public class EngineUtils {
     public static void shareApplication(Context context, AppInfo appInfo) {
@@ -43,7 +40,7 @@ public class EngineUtils {
     }
 
 
-//    应用设置
+
 
     public static void SettingAppDetail(Context context, AppInfo appInfo){
         Intent intent = new Intent();
@@ -54,7 +51,7 @@ public class EngineUtils {
     }
 
 
-//    卸载应用
+
 
     public static void uninstallApplication(Context context,AppInfo appInfo){
         if (appInfo.isUserApp){
@@ -68,21 +65,19 @@ public class EngineUtils {
     }
 
 
-//------------------------- 添加内容 start   ----------------------------------------------------
 
-//    关于应用信息
 
     public static void AboutAppData(Context context,AppInfo appInfo){
         AlertDialog.Builder builder =new AlertDialog.Builder(context);
         builder.setTitle(appInfo.appName);
         builder.setMessage(
-//          安装版本号
+
                 "Version:"+"\n"+appInfo.appVersion+"\n\n"+
-//          安装时间
+
                 "Install time:"+"\n"+appInfo.inStalldate+"\n\n"+
-//          证书签署者信息
+
                 "Certificate issuer:"+"\n"+appInfo.certMsg+"\n\n"+
-//          应用申请权限
+
                 "Permission:"+"\n"+appInfo.Permissions);
         builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
             @Override
@@ -92,9 +87,27 @@ public class EngineUtils {
         });
         builder.show();
     }
+    public static  void  ActivityApplication(Context context,AppInfo appInfo){
+        PackageManager pm1 = context.getPackageManager();
+        StringBuffer sb = new StringBuffer();
+        ActivityInfo act[] = pm1.getPackageArchiveInfo(appInfo.apkPath,PackageManager.GET_ACTIVITIES).activities;
+        for(int i=0;i<act.length;i++){
+            sb.append(act[i].toString());
+            sb.append("\n");
 
-//------------------------- 添加内容 end   ------------------------------------------------------
-
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(appInfo.appName);
+        builder.setMessage(sb);
+        builder.setCancelable(false);
+        builder.setNegativeButton("确定",new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialogInterface,int i ){
+                dialogInterface.dismiss();
+            }
+        });
+        builder.show();
+    }
 
 }
 

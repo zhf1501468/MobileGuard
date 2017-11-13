@@ -25,14 +25,12 @@ import cn.edu.gdmec.android.mobileguard.m4appmanager.adapter.AppMangerAdapter;
 import cn.edu.gdmec.android.mobileguard.m4appmanager.entity.AppInfo;
 import cn.edu.gdmec.android.mobileguard.m4appmanager.utils.AppInfoParser;
 
-/**
- * Created by DONG on 2017/11/5.
- */
+
 
 public class AppManagerActivity extends AppCompatActivity implements View.OnClickListener {
-//手机剩余内存
+
     private TextView mPhoneMemoryTV;
-    //sd card剩余内存
+
     private TextView mSDMemoryTV;
     private ListView mListView;
     private List<AppInfo> appInfos;
@@ -40,7 +38,7 @@ public class AppManagerActivity extends AppCompatActivity implements View.OnClic
     private List<AppInfo> systemAppInfos = new ArrayList<AppInfo>();
     private AppMangerAdapter adapter;
     private TextView mAppNumTV;
-//    接收应用程序卸载成功的广播
+
     private UninstallReceiver receiver;
 
     private Handler mHandle = new Handler(){

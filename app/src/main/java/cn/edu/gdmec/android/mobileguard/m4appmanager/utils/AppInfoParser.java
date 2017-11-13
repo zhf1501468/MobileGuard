@@ -19,9 +19,7 @@ import java.util.regex.Pattern;
 
 import cn.edu.gdmec.android.mobileguard.m4appmanager.entity.AppInfo;
 
-/**
- * Created by DONG on 2017/11/5.
- */
+
 
 public class AppInfoParser {
     public static List<AppInfo> getAppInfos(Context context){
@@ -37,16 +35,16 @@ public class AppInfoParser {
             String appname = packageInfo.applicationInfo.loadLabel(pm).toString();
             appInfo.appName = appname;
 
-//------------------------- 添加内容 start   ------------------------------------------------------
 
-//应用版本号
+
+
             String appversion = packageInfo.versionName;
             appInfo.appVersion = appversion;
-//应用安裝时间
+
             SimpleDateFormat dateformat = new SimpleDateFormat("yyyy年MM月dd号 hh:mm:ss");
             long installdate = packageInfo.firstInstallTime;
             appInfo.inStalldate = dateformat.format(installdate);;
-//应用权限申请信息
+
             try {
                 packageInfo = pm.getPackageInfo(appInfo.packageName, PackageManager.GET_PERMISSIONS);
                 String[] permissions = packageInfo.requestedPermissions;
@@ -61,7 +59,7 @@ public class AppInfoParser {
             }catch (Exception e){
                 e.printStackTrace();
             }
-//证书签署者信息
+
             try {
                 packageInfo = pm.getPackageInfo ( appInfo.packageName, PackageManager.GET_SIGNATURES );
                 Signature[] signatures = packageInfo.signatures;
@@ -75,7 +73,7 @@ public class AppInfoParser {
                 e.printStackTrace();
             }
 
-//------------------------- 添加内容 end   --------------------------------------------------------
+
 
             String apkpath = packageInfo.applicationInfo.sourceDir;
             appInfo.apkPath = apkpath;

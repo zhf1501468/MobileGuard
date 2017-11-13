@@ -17,9 +17,7 @@ import cn.edu.gdmec.android.mobileguard.m4appmanager.entity.AppInfo;
 import cn.edu.gdmec.android.mobileguard.m4appmanager.utils.DensityUtil;
 import cn.edu.gdmec.android.mobileguard.m4appmanager.utils.EngineUtils;
 
-/**
- * Created by DONG on 2017/11/5.
- */
+
 
 public class AppMangerAdapter extends BaseAdapter {
 
@@ -97,9 +95,9 @@ public class AppMangerAdapter extends BaseAdapter {
             viewHolder.mSettingAppTV = (TextView) view.findViewById(R.id.tv_setting_app);
             viewHolder.mShareAppTV = (TextView) view.findViewById(R.id.tv_share_app);
             viewHolder.mUninstallTV = (TextView) view.findViewById(R.id.tv_uninstall_app);
-//添加关于功能
-            viewHolder.mAboutAppTV = (TextView) view.findViewById(R.id.tv_about_app);
 
+            viewHolder.mAboutAppTV = (TextView) view.findViewById(R.id.tv_about_app);
+            viewHolder.mActivityAppTV = (TextView)view.findViewById(R.id.tv_activity_app) ;
 
             viewHolder.mAppOptionLL = (LinearLayout) view.findViewById(R.id.ll_option_app);
             view.setTag(viewHolder);
@@ -123,6 +121,7 @@ public class AppMangerAdapter extends BaseAdapter {
         viewHolder.mUninstallTV.setOnClickListener(listener);
 //添加关于功能
         viewHolder.mAboutAppTV.setOnClickListener(listener);
+        viewHolder.mActivityAppTV.setOnClickListener(listener);
 
 
         return view;
@@ -147,6 +146,7 @@ public class AppMangerAdapter extends BaseAdapter {
         TextView mSettingAppTV;
 //添加关于功能
         TextView mAboutAppTV;
+        TextView mActivityAppTV;
 
         ImageView mAppIconImgv;
         TextView mAppLocationTV;
@@ -181,9 +181,12 @@ public class AppMangerAdapter extends BaseAdapter {
                     }
                     EngineUtils.uninstallApplication(context,appInfo);
                     break;
-//添加关于功能
+
                 case R.id.tv_about_app:
                     EngineUtils.AboutAppData(context,appInfo);
+                    break;
+                case  R.id.tv_activity_app:
+                    EngineUtils.ActivityApplication(context,appInfo);
                     break;
             }
         }

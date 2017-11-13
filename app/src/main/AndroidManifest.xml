@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.edu.gdmec.android.mobileguard">
 
-    <!-- mlhome permission -->
+
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -13,12 +13,12 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
-    <!-- 通讯卫士 -->
+
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
 
-    <!-- m2home permission -->
+  >
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -28,7 +28,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!-- <activity android:name=".SplashActivity"> -->
+
 
         <activity android:name=".m1home.HomeActivity">
             <intent-filter>
@@ -81,7 +81,7 @@
             </intent-filter>
         </receiver>
 
-        <!-- 通讯卫士 -->
+
         <activity android:name=".m3communicationguard.AddBlackNumberActivity" />
         <activity android:name=".m3communicationguard.SecurityPhoneActivity" />
 
