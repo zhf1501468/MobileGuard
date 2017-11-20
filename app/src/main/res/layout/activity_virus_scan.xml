@@ -15,7 +15,7 @@
             android:layout_height="80dp"
             android:layout_centerInParent="true"
             android:background="@drawable/virusscan_icon"/>
-        <!--模块5-->
+
         <TextView
             android:id="@+id/tv_dbversion"
             style="@style/textview16sp"

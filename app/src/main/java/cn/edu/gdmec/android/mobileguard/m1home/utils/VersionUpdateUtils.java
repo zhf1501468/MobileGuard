@@ -92,8 +92,7 @@ public class VersionUpdateUtils {
             }
         }
     };
-    //构造方法老师模块5
-    //public VersionUpdateUtils(String mVersion, Activity context) {
+
     public VersionUpdateUtils(String mVersion, Activity context,DownloadCallback downloadCallback,Class<?> nextActivty) {
         this.mVersion = mVersion;
         this.context = context;
@@ -101,30 +100,18 @@ public class VersionUpdateUtils {
         this.nextActivty = nextActivty;
     }
 
-//    public VersionUpdateUtils(String localDbVersion, VirusScanActivity virusScanActivity) {
-//
-//
-//    }
 
-    //模块5老师，获取服务器版本号
-    //public void getCloudVersion() {
     public void getCloudVersion(String url){
         try {
             HttpClient httpClient = new DefaultHttpClient ();
-            /*连接超时*/
             HttpConnectionParams.setConnectionTimeout(httpClient.getParams(), 5000);
-            /*请求超时*/
             HttpConnectionParams.setSoTimeout(httpClient.getParams(), 5000);
-            //HttpGet httpGet = new HttpGet ( "http://android2017.duapp.com/updateinfo.html" );
-            //HttpGet httpGet =new HttpGet("http://android2017.duapp.com/virusupdateinfo.html");
             HttpGet httpGet = new HttpGet(url);
 
             HttpResponse execute = httpClient.execute(httpGet);
             if (execute.getStatusLine().getStatusCode() == 200) {
-                // 请求和响应都成功了
                 HttpEntity httpEntity = execute.getEntity();
                 String result = EntityUtils.toString(httpEntity, "utf-8");
-                // 创建jsonObject对象
                 System.out.println(result);
 
                 JSONObject jsonObject = new JSONObject(result);
@@ -137,13 +124,8 @@ public class VersionUpdateUtils {
                 String apkurl = jsonObject.getString("apkurl");
                 versionEntity.apkurl = apkurl;
 
-                //versionEntity.versioncode= jsonObject.getString("code");
 
-                //versionEntity.description = jsonObject.getString("des");
-
-                //versionEntity.apkurl = jsonObject.getString("apkurl");
                 if (!mVersion.equals(versionEntity.versionCode)) {
-                    // 版本号不一致
                     handler.sendEmptyMessage ( MESSAGE_SHOW_DIALOG );
                 }
             }
@@ -157,7 +139,6 @@ public class VersionUpdateUtils {
     }
 
     private void showUpdateDialog(final VersionEntity versionEntity) {
-        //创建dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("检测有新版本：" + versionEntity.versionCode);
         builder.setMessage(versionEntity.description);
@@ -166,7 +147,6 @@ public class VersionUpdateUtils {
         builder.setPositiveButton("立刻升级", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                //下载apk
                 downloadNewApk(versionEntity.apkurl);
                 enterHome();
             }
@@ -175,68 +155,58 @@ public class VersionUpdateUtils {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
-                //模块5
                 enterHome();
             }
         });
         builder.show();
     }
-    //发送进入主界面消息
     private void enterHome() {
         handler.sendEmptyMessageDelayed(MESSAGE_ENTERHOME,2000);
     }
 
     private void downloadNewApk(String apkurl) {
-        DownloadUtils downloadUtils = new DownloadUtils();
-        //downloadUtils.downloadApk(apkurl, "mobileguard.apk", context);
-        //downloadUtils.downloadApk(apkurl,"antivirus.db",context);
+        DownloadUtils downloadUtils = new DownloadUtils();;
         String filename = "downloadfile";
         String suffixes="avi|mpeg|3gp|mp3|mp4|wav|jpeg|gif|jpg|png|apk|exe|pdf|rar|zip|docx|doc|apk|db";
-        Pattern pat=Pattern.compile("[\\w]+[\\.]("+suffixes+")");//正则判断
-        Matcher mc=pat.matcher(apkurl);//条件匹配
+        Pattern pat=Pattern.compile("[\\w]+[\\.]("+suffixes+")");
+        Matcher mc=pat.matcher(apkurl);
         while(mc.find()){
-            filename = mc.group();//截取文件名后缀名
+            filename = mc.group();//
         }
         downapk(apkurl, filename, context);
 
     }
 
     public void downapk(String url,String targetFile,Context context){
-        //创建下载任务
         DownloadManager.Request request = new DownloadManager.Request( Uri.parse(url));
-        request.setAllowedOverRoaming(false);//漫游网络是否可以下载
-
-        //设置文件类型，可以在下载结束后自动打开该文件
+        request.setAllowedOverRoaming(false);
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         String mimeString = mimeTypeMap.getMimeTypeFromExtension(MimeTypeMap.getFileExtensionFromUrl(url));
         request.setMimeType(mimeString);
 
-        //在通知栏中显示，默认就是显示的
+
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
         request.setVisibleInDownloadsUi(true);
 
-        //sdcard的目录下的download文件夹，必须设置
-        request.setDestinationInExternalPublicDir("/download/", targetFile);
-        //request.setDestinationInExternalFilesDir(),也可以自己制定下载路径
 
-        //将下载请求加入下载队列
+        request.setDestinationInExternalPublicDir("/download/", targetFile);
+
+
+
         DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
-        //加入下载队列后会给该任务返回一个long型的id，
-        //通过该id可以取消任务，重启任务等等，看上面源码中框起来的方法
+
         downloadId = downloadManager.enqueue(request);
         listener(downloadId,targetFile);
 
     }
 
     private void listener(final long Id,final String filename) {
-        // 注册广播监听系统的下载完成事件。
         IntentFilter intentFilter = new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 long ID = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
                 if (ID == Id) {
-                    //Toast.makeText(context.getApplicationContext(), "任务:" + Id + " 下载完成!", Toast.LENGTH_LONG).show();
                     Toast.makeText(context.getApplicationContext(), "下载编号:" + Id +"的"+filename+" 下载完成!", Toast.LENGTH_LONG).show();
                 }
                 context.unregisterReceiver(broadcastReceiver);

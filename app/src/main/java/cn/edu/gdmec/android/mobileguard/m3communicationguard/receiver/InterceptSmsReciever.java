@@ -9,9 +9,6 @@ import android.util.Log;
 
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.db.dao.BlackNumberDao;
 
-/**
- * Created by DONG on 2017/11/4.
- */
 
 public class InterceptSmsReciever extends BroadcastReceiver {
 

@@ -13,9 +13,7 @@ import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.db.dao.BlackNumberDao;
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.entity.BlackContactInfo;
 
-/**
- * Created by Swindler on 2017/10/30.
- */
+
 
 public class BlackContactAdapter extends BaseAdapter{
     private List<BlackContactInfo> contactInfos;

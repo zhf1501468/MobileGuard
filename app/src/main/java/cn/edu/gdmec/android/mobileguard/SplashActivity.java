@@ -22,15 +22,6 @@ public class SplashActivity extends AppCompatActivity {
         mTvVersion = (TextView)findViewById(R.id.tv_splash_version);
         mTvVersion.setText("版本号："+mVersion);
 
-        /*final VersionUpdateUtils versionUpdateUtils = new VersionUpdateUtils(mVersion,SplashActivity.this);
-          new Thread(){
-            @Override
-            public void run(){
-                super.run();
-                versionUpdateUtils.getCloudVersion();
-                versionUpdateUtils.getCloudVersion("http://android2017.duapp.com/updateinfo.html");
-            }
-        }.start()*/
 
 
         startActivity(new Intent(this, HomeActivity.class));

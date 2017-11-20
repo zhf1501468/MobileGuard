@@ -1,8 +1,6 @@
 package cn.edu.gdmec.android.mobileguard.m3communicationguard.entity;
 
-/**
- * Created by Swindler on 2017/10/30.
- */
+
 
 public class BlackContactInfo {
     public String phoneNumber;

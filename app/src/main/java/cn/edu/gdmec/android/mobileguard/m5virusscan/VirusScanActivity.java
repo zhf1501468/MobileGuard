@@ -22,19 +22,14 @@ import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m1home.utils.VersionUpdateUtils;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.dao.AntiVirusDao;
 
-/**
- * Created by SwinJoy on 2017/11/13.
- */
+
 
 public class VirusScanActivity extends AppCompatActivity implements View.OnClickListener{
     private TextView mLastTimeTV;
     private TextView mDbVersionTV;
     private SharedPreferences mSP;
 
-    //private TextView mScanVersion;
 
-
-    //private String mVersion;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate ( savedInstanceState );
@@ -52,7 +47,7 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
         mLastTimeTV.setText ( string );
         super.onResume ();
     }
-    //模块5
+
     Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -82,14 +77,14 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
         }.start();
     }
 
-    //拷贝病毒数据库
+
     private void copyDB(final String dbname,final String fromPath) {
-        //大文件的拷贝复制一定要用线程，否则很容易出现ANR
+
         new Thread (  ){
             public void run(){
                 try{
                     File file = new File ( getFilesDir (),dbname );
-                    //if (file.exists ()&&file.length ()>0){
+
                     if(file.exists()&&file.length()>0&&fromPath.equals("")){
                         Log.i ("VirusScanActivity","数据库已存在！");
 
@@ -98,7 +93,7 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
                         return;
                     }
 
-                    //InputStream is = getAssets ().open ( dbname );
+
                     InputStream is;
                     if (fromPath.equals("")){
                         is = getAssets().open(dbname);
@@ -126,7 +121,7 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
         }.start ();
     }
 
-    //初始化UI控件
+
     private void initView(){
         findViewById ( R.id.rl_titlebar ).setBackgroundColor (
                 getResources ().getColor ( R.color.light_blue ) );
@@ -135,7 +130,7 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
         mLeftImgv.setOnClickListener ( this );
         mLeftImgv.setImageResource ( R.drawable.back );
         mLastTimeTV = (TextView) findViewById ( R.id.tv_lastscantime );
-        //mScanVersion=(TextView)findViewById(R.id.tv_scan_version);
+
 
         findViewById ( R.id.rl_allscanvirus ).setOnClickListener ( this );
     }

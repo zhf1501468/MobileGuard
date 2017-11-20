@@ -27,7 +27,7 @@ public class EngineUtils {
     }
 
 
-//    启动应用
+
 
     public static void startApplication(Context context, AppInfo appInfo){
         PackageManager pm = context.getPackageManager();

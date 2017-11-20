@@ -9,9 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import cn.edu.gdmec.android.mobileguard.R;
-/**
- * Created by Administrator on 2017/10/6.
- */
+
 
 public class SetUpPasswordDialog extends Dialog implements View.OnClickListener {
 

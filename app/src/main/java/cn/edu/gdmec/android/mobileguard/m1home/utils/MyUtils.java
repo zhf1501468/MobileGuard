@@ -15,7 +15,7 @@ import java.io.File;
  */
 
 public class MyUtils {
-    //获取版本号
+
     public static String getVersion(Context context){
         PackageManager packageManager = context.getPackageManager();
         try {
@@ -26,7 +26,7 @@ public class MyUtils {
             return "";
         }
     }
-    //安装新版本
+
     public static void installApk(Activity activity, String apkFile){
         Intent intent = new Intent (Intent.ACTION_VIEW);
         intent.addCategory(Intent.CATEGORY_DEFAULT);

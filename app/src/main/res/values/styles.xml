@@ -1,8 +1,8 @@
 <resources>
 
-    <!-- Base application theme. -->
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -26,13 +26,12 @@
         <item name="android:textSize">14sp</item>
         <item name="android:gravity">center_vertical</item>
     </style>
-<!--手机防盗界面增加的 201710.16-->
-    <!-- TextView 14sp样式-->
+
     <style name="textview14sp." parent="wrapcontent">
         <item name="android:textSize">14sp</item>
         <item name="android:gravity">center_vertical</item>
     </style>
-    <!--软件管家模块用到的2017.11.06-->
+
     <style name="zero_widthwrapcontent">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>

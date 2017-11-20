@@ -12,9 +12,7 @@ import android.widget.TextView;
 
 import cn.edu.gdmec.android.mobileguard.R;
 
-/**
- * Created by Administrator on 2017/10/6.
- */
+
 
 public class InterPasswordDialog extends Dialog implements View.OnClickListener {
     private TextView mTitleTV;

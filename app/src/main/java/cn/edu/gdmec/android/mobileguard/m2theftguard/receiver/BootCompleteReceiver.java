@@ -6,9 +6,7 @@ import android.content.Intent;
 
 import cn.edu.gdmec.android.mobileguard.App;
 
-/**
- * Created by Administrator on 2017/10/21.
- */
+
 
 public class BootCompleteReceiver extends BroadcastReceiver {
     @Override

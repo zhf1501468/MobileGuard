@@ -30,7 +30,6 @@ import cn.edu.gdmec.android.mobileguard.m4appmanager.utils.AppInfoParser;
 public class AppManagerActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView mPhoneMemoryTV;
-
     private TextView mSDMemoryTV;
     private ListView mListView;
     private List<AppInfo> appInfos;
@@ -90,7 +89,7 @@ public class AppManagerActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_manager);
-//        注册广播
+
         receiver = new UninstallReceiver();
         IntentFilter intentFilter = new IntentFilter(Intent.ACTION_PACKAGE_REMOVED);
         intentFilter.addDataScheme("package");

@@ -13,9 +13,7 @@ import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.entity.ScanAppInfo;
 
 
-/**
- * Created by Swindler on 2017/11/13.
- */
+
 
 public class ScanVirusAdapter extends BaseAdapter{
     private List<ScanAppInfo> mScanAppInfos;
@@ -48,7 +46,6 @@ public class ScanVirusAdapter extends BaseAdapter{
     public View getView(int i, View view, ViewGroup viewGroup){
         ViewHolder holder;
         if (view == null){
-            //由于程序锁的条目与病毒扫描内容基本一致，因此重用程序锁的布局
             view = View.inflate ( context, R.layout.item_list_applock, null );
             holder = new ViewHolder ();
             holder.mAppIconImgv = (ImageView) view.findViewById ( R.id.imgv_appicon );
