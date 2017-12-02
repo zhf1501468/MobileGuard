@@ -18,4 +18,6 @@
     <color name="light_blue">#1671CE</color>
     <color name="light_rose_red">#F73CA7</color>
     <color name="rose_red">#E72993</color>
+    <color name="bright_green">#26E587</color>
+    <color name="light_green">#55DC28</color>
 </resources>
