@@ -41,7 +41,7 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
         mLastTimeTV.setText(string);
         super.onResume();
     }
-
+//
     Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
