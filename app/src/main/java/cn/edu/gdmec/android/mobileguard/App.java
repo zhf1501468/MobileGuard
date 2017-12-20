@@ -36,7 +36,7 @@ public class App extends Application {
 
             String realsim = tm.getSimSerialNumber();
 
-            //realsim="999";
+            //kaokao
             if (bindsim.equals(realsim)) {
                 Log.i("", "sim卡未发生变化，还是您的手机");
             } else {
