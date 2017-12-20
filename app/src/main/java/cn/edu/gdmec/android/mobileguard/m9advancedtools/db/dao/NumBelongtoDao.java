@@ -6,31 +6,17 @@ import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
 public class NumBelongtoDao {
-    /**
-     * 返回电话号码的归属地
-     *
-     * @param phonenumber
-     *            电话号码
-     * @return 归属地
-     */
+
     public static String getLocation(Context context, String phonenumber) {
 
         String location = phonenumber;
-        // 130 131 132 133 134 135 136 137 137 139
-        // 15x
-        // 14x
-        // 18x
-        // 17x
-        // 长度是11位
-        // ^1[34578]\d{9}$
-        // path 数据库文件的路径
+
         String dbname = context.getFilesDir()+ "/address.db";
         System.out.println(dbname);
         SQLiteDatabase db = SQLiteDatabase.openDatabase(dbname, null,
                 SQLiteDatabase.OPEN_READONLY);
 
         if (phonenumber.matches("^1[34578]\\d{9}$")) {
-            // 手机号码的查询
             Cursor cursor = db
                     .rawQuery(
                             "select location from data2 where id=(select outkey from data1 where id=?)",
@@ -39,9 +25,9 @@ public class NumBelongtoDao {
                 location = cursor.getString(0);
             }
             cursor.close();
-        } else {// 其他电话
-            switch (phonenumber.length()) {// 判断电话号码的长度
-                case 3: // 110 120 119 121 999
+        } else {
+            switch (phonenumber.length()) {
+                case 3:
                     if ("110".equals(phonenumber)) {
                         location = "匪警";
                     } else if ("120".equals(phonenumber)) {
@@ -65,7 +51,7 @@ public class NumBelongtoDao {
                 default:
                     if(location.length()>=9&& location.startsWith("0")){
                         String address = null;
-                        //select location from data2 where area = '10'
+
                         Cursor cursor = db.rawQuery("select location from data2 where area = ?",
                                 new String[]{location.substring(1, 3)});
                         if(cursor.moveToNext()){

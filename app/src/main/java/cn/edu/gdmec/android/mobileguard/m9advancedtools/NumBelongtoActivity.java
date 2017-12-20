@@ -91,11 +91,6 @@ public class NumBelongtoActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-    /**
-     * 拷贝资产目录下的数据库文件
-     *
-     * @param dbname 数据库文件的名称
-     */
     private void copyDB(final String dbname) {
         new Thread() {
             public void run() {

@@ -46,9 +46,6 @@ public class EnterPswActivity extends AppCompatActivity implements View.OnClickL
             e.printStackTrace();
         }
     }
-    /**
-     * 初始化控件
-     */
     private void initView() {
         mAppIcon = (ImageView) findViewById(R.id.imgv_appicon_enterpsw);
         mAppNameTV = (TextView) findViewById(R.id.tv_appname_enterpsw);

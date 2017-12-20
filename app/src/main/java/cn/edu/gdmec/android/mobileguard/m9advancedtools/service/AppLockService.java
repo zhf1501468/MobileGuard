@@ -20,9 +20,8 @@ import cn.edu.gdmec.android.mobileguard.App;
 import cn.edu.gdmec.android.mobileguard.m9advancedtools.EnterPswActivity;
 import cn.edu.gdmec.android.mobileguard.m9advancedtools.db.dao.AppLockDao;
 
-//程序锁服务
+
 public class AppLockService extends Service {
-    /** 是否开启程序锁服务的标志 */
     private boolean flag = false;
     private AppLockDao dao;
     private Uri uri = Uri.parse(App.APPLOCK_CONTENT_URI);
@@ -101,9 +100,7 @@ public class AppLockService extends Service {
         return null;
     }
 
-    /***
-     * 开启监控程序服务
-     */
+
     private void startApplockService() {
         new Thread() {
             public void run() {

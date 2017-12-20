@@ -36,10 +36,7 @@ public class AdvancedToolsView extends RelativeLayout {
         mTypedArray.recycle();
         init(context);
     }
-    /**
-     * 控件初始化
-     * @param context
-     */
+
     private void init(Context context) {
         View view  = View.inflate(context, R.layout.ui_advancedtools_view, null);
         this.addView(view);

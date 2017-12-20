@@ -76,12 +76,12 @@ public class AppLockFragment extends Fragment {
         mLockCB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                //Intent intent = new Intent(context, AppLockService.class);
+
                 final Intent intent = new Intent();
                 ComponentName componentName = new ComponentName("cn.edu.gdmec.android.mobileguard"
                         ,"cn.edu.gdmec.android.mobileguard.m9advancedtools.service.AppLockService");
                 intent.setComponent(componentName);
-                //intent.setAction("cn.edu.gdmec.android.mobileguard.m9advancedtools.m9advancedtools.service.AppLockService");
+
 
                 if (b){
                     context.startService(intent);

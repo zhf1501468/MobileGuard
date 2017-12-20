@@ -5,9 +5,6 @@ import android.content.Context;
 
 import java.util.List;
 
-/**
- * Created by Swindler on 2017/11/29.
- */
 
 public class SystemInfoUtils {
     public static boolean isServiceRunning(Context context,String className){
