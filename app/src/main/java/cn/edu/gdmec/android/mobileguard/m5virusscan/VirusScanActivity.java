@@ -41,7 +41,7 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
         mLastTimeTV.setText(string);
         super.onResume();
     }
-//
+
     Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -73,8 +73,12 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
         }.start();
 
     }
-
+    /**
+     * 拷贝病毒数据库
+     * @param String
+     */
     private void copyDB(final String dbname,final String fromPath) {
+        //大文件的拷贝复制一定要用线程，否则很容易出现ANR
         new Thread(){
             public void run() {
                 try {
@@ -108,7 +112,9 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
             };
         }.start();
     }
-
+    /**
+     * 初始化UI控件
+     */
     private void initView() {
         findViewById(R.id.rl_titlebar).setBackgroundColor(
                 getResources().getColor(R.color.light_blue));

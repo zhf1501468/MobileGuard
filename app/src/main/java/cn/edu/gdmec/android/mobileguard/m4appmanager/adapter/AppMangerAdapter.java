@@ -183,10 +183,10 @@ public class AppMangerAdapter extends BaseAdapter {
                     break;
 
                 case R.id.tv_about_app:
-                    EngineUtils.AboutAppData(context,appInfo);
+                    EngineUtils.showApplicationInfo(context,appInfo);
                     break;
                 case  R.id.tv_activity_app:
-                    EngineUtils.ActivityApplication(context,appInfo);
+                    EngineUtils.showApplicationActivities(context,appInfo);
                     break;
             }
         }

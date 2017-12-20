@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="cn.edu.gdmec.android.mobileguard">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,13 +12,18 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
+    <!-- 通讯卫士部分 -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
+    <!-- 手机杀毒部分 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE"/>
-    <uses-permission android:name="android.permission.CLEAR_APP_CACHE"/>
-
+    <!-- 缓存清理部分 -->
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
+    <!--高级工具程序锁部分-->
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -78,6 +84,7 @@
             </intent-filter>
         </receiver>
 
+        <!-- 通讯卫士部分 -->
         <activity android:name=".m3communicationguard.AddBlackNumberActivity" />
         <activity android:name=".m3communicationguard.SecurityPhoneActivity" />
 
@@ -100,12 +107,33 @@
         </receiver>
 
         <activity android:name=".m4appmanager.AppManagerActivity" />
-        <activity android:name=".m5virusscan.VirusScanActivity" />
         <activity android:name=".m5virusscan.VirusScanSpeedActivity" />
+        <activity android:name=".m5virusscan.VirusScanActivity" />
         <activity android:name=".m6cleancache.CacheClearListActivity" />
-        <activity android:name=".m6cleancache.CleanCacheActivity"></activity>
-        <activity android:name=".m8trafficmonitor.OpenratorSetActivity"></activity>
-        <activity android:name=".m8trafficmonitor.TrafficMonitoringActivity"></activity>
+        <activity android:name=".m6cleancache.CleanCacheActivity" />
+
+        <service
+            android:name=".m8trafficmonitor.service.TrafficMonitoringService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver
+            android:name=".m8trafficmonitor.reciever.BootCompleteReciever"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".m8trafficmonitor.TrafficMonitoringActivity" />
+        <activity android:name=".m8trafficmonitor.OpenratorSetActivity" />
+        <activity android:name=".m9advancedtools.AdvancedToolsActivity" />
+        <activity android:name=".m9advancedtools.NumBelongtoActivity" />
+
+        <service
+            android:name=".m9advancedtools.service.AppLockService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".m9advancedtools.EnterPswActivity" />
+        <activity android:name=".m9advancedtools.AppLockActivity"></activity>
     </application>
 
 </manifest>
