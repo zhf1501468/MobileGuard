@@ -15,7 +15,7 @@ import android.widget.TextView;
 import cn.edu.gdmec.android.mobileguard.R;
 
 
-//abcd2017.12.20.23
+//abcd2017.12.20.23.5656
 public class OpenratorSetActivity extends AppCompatActivity implements View.OnClickListener{
     private Spinner mSelectSP;
     private String[] operators = {"中国移动","中国联通","中国电信"};
